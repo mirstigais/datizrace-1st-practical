@@ -54,19 +54,11 @@ businessTravelVals <-c(
   "non-travel"
 )
 
-# Education accepted vals
-educationVals <-c(
-  "college",
-  "master",
-  "bachelor",
-  "doctor"
-)
-
 # Marital values
 maritalVals <- c("single", "married", "divorced", "widowed")
 
 # Convert all data to lowercase, because some values are all caps
-# I will do some comparisons and it will be easier
+# I will later do some comparisons and it will be easier
 csvData <- csvData %>%
   mutate(across(where(is.character), tolower))
 
@@ -108,8 +100,6 @@ mutate(
   MaritalStatus = case_when(
     str_detect(MaritalStatus, "single") ~ "single",
     str_detect(MaritalStatus, "married") ~ "married",
-    #str_detect(MaritalStatus, "divorced") ~ "divorced",
-    #str_detect(MaritalStatus, "widowed") ~ "widowed",
     TRUE ~ NA_character_  # any unrecognized values
   ),
   MonthlyIncome = as.numeric(MonthlyIncome),
